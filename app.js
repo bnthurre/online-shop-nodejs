@@ -4,6 +4,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const expressHbr= require('express-handlebars');
 
+const errorController = require('./controllers/errorController');
+
 const app = express();
 
 //using ejs 
@@ -31,8 +33,5 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(shopRoute);
 app.use("/admin", adminroute);
 
-app.use((req, res, next) => {
-  res.status(404).render('404', {pageTitle:'page not found'});
-});
-
+app.use(errorController.get404Page);
 app.listen(9000);
