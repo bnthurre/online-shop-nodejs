@@ -6,10 +6,15 @@ const expressHbr= require('express-handlebars');
 
 const app = express();
 
-//using handlerbars
-app.engine('hbs', expressHbr({layoutsDir: 'views/layout', defaultLayout:'main-layout'}));
-app.set("view engine", "hbs");
+//using ejs 
+
+app.set("view engine", "ejs");
 app.set('views', "views");
+
+//using handlerbars
+// app.engine('hbs', expressHbr({layoutsDir: 'views/layout', defaultLayout:'main-layout'}));
+// app.set("view engine", "hbs");
+// app.set('views', "views");
 
 // using pug engine
 // app.set("view engine", "pug");
