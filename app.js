@@ -21,15 +21,15 @@ app.set('views', "views");
 // app.set('views', "views");
 
 
-const adminData = require("./router/admin");
-const shopRoute = require("./router/shop");
+const adminroute = require("./routes/admin");
+const shopRoute = require("./routes/shop");
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(shopRoute);
-app.use("/admin", adminData.routes);
+app.use("/admin", adminroute);
 
 app.use((req, res, next) => {
   res.status(404).render('404', {pageTitle:'page not found'});
