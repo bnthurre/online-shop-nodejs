@@ -1,41 +1,39 @@
+const products = [];
 const path = require("path");
 const fs = require("fs");
 const { json } = require("body-parser");
 module.exports = class Product {
-  constructor(title) {
-    this.title = title;
+  constructor(titl) {
+    this.title = titl;
   }
   save() {
     const p = path.join(
-      path.dirname(process.main.filename),
+      path.dirname(require.main.filename),
       "data",
       "products.json"
     );
-    fs.readFile(p, (err, data) => {
+    fs.readFile(p, (err, fileContent) => {
       let products = [];
       if (!err) {
-        products = json.parse(data);
-      } else {
-        products.push(this);
+        products = JSON.parse(fileContent);
       }
-    });
-    fs.writeFile(p, JSON.stringify(products), (err) => {
-      console.log(err);
+      products.push(this);
+      fs.writeFile(p, JSON.stringify(products), (err) => {
+        console.log(err);
+      });
     });
   }
-  fetchAll() {
+  static fetchAll() {
     const p = path.join(
-      path.dirname(process.main.filename),
+      path.dirname(require.main.filename),
       "data",
       "products.json"
     );
-    ب;
-    fs.readFile(p, (err, data) => {
-      if (err) {
+    fs.readfile(p, (err, fileContent)=>{
+      if(err){
         return [];
-      } else {
-        return JSON.parse(data);
       }
-    });
+      products= JSON.parse(fileContent);
+    })
   }
 };
