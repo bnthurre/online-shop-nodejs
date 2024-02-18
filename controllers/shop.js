@@ -10,13 +10,17 @@ exports.getProducts = (req, res, next) => {
   });
 };
 
-exports.getProduct =(req,res,next)=>{
+//get single product
+exports.getProduct = (req, res, next) => {
   const prodId = req.params.productId;
-  Product.findById(prodId, (product)=>{
-    console.log(product);
-  })
-  res.redirect('/')
-}
+  Product.findById(prodId, (product) => {
+    res.render("shop/product-details", {
+      pageTitle: product.title,
+      path: "/products",
+      product: product,
+    });
+  });
+};
 
 //
 exports.getIndex = (req, res, next) => {
@@ -30,26 +34,25 @@ exports.getIndex = (req, res, next) => {
 };
 
 //
-exports.getCart =(req,res,next)=>{
+exports.getCart = (req, res, next) => {
   res.render("shop/cart", {
-    path: '/cart',
-    pageTitle: "Your Cart"
-  })
-}
+    path: "/cart",
+    pageTitle: "Your Cart",
+  });
+};
 
 //
-exports.getOrder =(req,res,next)=>{
+exports.getOrder = (req, res, next) => {
   res.render("shop/orders", {
-    path: '/orders',
-    pageTitle: "Your orders"
-  })
-}
+    path: "/orders",
+    pageTitle: "Your orders",
+  });
+};
 
-// 
-exports.getCheckout = (req,res,next)=>{
-  res.render('shop/checkout',{
-    path: '/checkout',
-    pageTitle : 'checkouts'
-  })
-
-}
+//
+exports.getCheckout = (req, res, next) => {
+  res.render("shop/checkout", {
+    path: "/checkout",
+    pageTitle: "checkouts",
+  });
+};
